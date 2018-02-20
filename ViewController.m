@@ -11,6 +11,7 @@
 //#import "QuestionManager.h"
 //#import "QuestionFactory.h"
 #import "Question.h"
+//#import "GameModel.h"
 
 @interface ViewController ()
 
@@ -34,11 +35,14 @@
   // Do any additional setup after loading the view, typically from a nib.
   self.answerEntry.text = @"";
   
+  self.gameModel = [[GameModel alloc] init];
+  
   self.player1 = [[Player alloc] init];
   self.player2 = [[Player alloc] init];
 
   self.qFac = [[QuestionFactory alloc] init];
   self.questionToActivePlayer.text = [self.qFac question];
+  self.activePlayer.text = @"Player 1";
 //  QuestionManager *qManager = [[QuestionManager alloc] init];
 
 }
@@ -135,8 +139,18 @@ static void enterNumber(ViewController *object, NSString *numberString) {
 //    self.player1.numberOfLives--;
 //    self.playerOneLives.text = [NSString stringWithFormat:@"%d", self.player1.numberOfLives];
   }
+  
   self.qFac = [[QuestionFactory alloc] init];
   self.questionToActivePlayer.text = [self.qFac question];
+  self.answerEntry.text = @"";
+//  NSLog (@"%d", self.gameModel.changePlayer);
+  NSString *currentPlayer = [self.gameModel changePlayer];
+//  [activePlayerString stringByAppendingString:[NSString stringWithFormat:@"%d", [self.gameModel changePlayer]]];
+//  NSString *currentPlayerString = [NSString stringWithFormat:@"%d",currentPlayer];
+//  NSString *activePlayerString = @"Player ";
+//  [activePlayerString stringByAppendingString:currentPlayerString];
+  self.activePlayer.text = currentPlayer;
+  
 }
 
 @end

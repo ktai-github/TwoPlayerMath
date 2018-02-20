@@ -42,13 +42,15 @@
 //  }
 //}
 
-- (int) changePlayer{
+- (NSString *) changePlayer{
   //need to return player1 rather than player0
 //  return (self.currentIndex % self.players.count) + 1;
   if (self.currentPlayer == 1) {
-    return 2;
+    self.currentPlayer = 2;
+    return @"Player 2";
   } else {
-    return 1;
+    self.currentPlayer = 1;
+    return @"Player 1";
   }
 }
 

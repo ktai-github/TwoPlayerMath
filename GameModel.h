@@ -17,6 +17,6 @@
 //- (void) createPlayers : (int)numPlayers;
 //- (void) roll: (Player *)player;
 //- (void) output;
-- (int) changePlayer;
+- (NSString *) changePlayer;
 
 @end
