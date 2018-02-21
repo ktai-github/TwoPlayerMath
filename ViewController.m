@@ -39,8 +39,10 @@
   self.gameModel = [[GameModel alloc] init];
   
   self.player1 = [[Player alloc] init];
+  self.playerOneLives.text = [NSString stringWithFormat:@"%d", self.player1.numberOfLives];
   self.player2 = [[Player alloc] init];
-
+  self.playerTwoLives.text = [NSString stringWithFormat:@"%d", self.player2.numberOfLives];
+  
 //  self.question = [[Question alloc] init];
 //  self.qFac = [[QuestionFactory alloc] init];
 //  self.questionToActivePlayer.text = [self.qFac question];
@@ -139,12 +141,19 @@ static void enterNumber(ViewController *object, NSString *numberString) {
   int playerAnswer = [self.answerEntry.text intValue];
   [self.gameModel processAnswer:playerAnswer];
   
-  self.playerOneLives.text = [NSString stringWithFormat:@"%d", self.player1.numberOfLives];
-  self.playerOneScore.text = [NSString stringWithFormat:@"%d", self.player1.score];
-  
-  self.playerTwoLives.text = [NSString stringWithFormat:@"%d", self.player2.numberOfLives];
-  self.playerTwoScore.text = [NSString stringWithFormat:@"%d", self.player2.score];
+  self.playerOneLives.text = [NSString stringWithFormat:@"%d", [self.gameModel getPlayer1Lives]];
+  NSLog(@"vc player 1 lives %d", self.player1.numberOfLives);
 
+  self.playerOneScore.text = [NSString stringWithFormat:@"%d", [self.gameModel getPlayer1Score]];
+  NSLog(@"vc player 1 score %d", self.player1.score);
+  
+  self.playerTwoLives.text = [NSString stringWithFormat:@"%d", [self.gameModel getPlayer2Lives]];
+  NSLog(@"vc player 2 lives %d", self.player2.numberOfLives);
+
+  self.playerTwoScore.text = [NSString stringWithFormat:@"%d", [self.gameModel getPlayer2Score]];
+  NSLog(@"vc player 2 score %d", self.player2.score);
+
+  
 //  self.qFac = [[QuestionFactory alloc] init];
 //  self.questionToActivePlayer.text = [self.qFac question];
 //  self.questionToActivePlayer.text = [self.gameModel question];
@@ -158,7 +167,22 @@ static void enterNumber(ViewController *object, NSString *numberString) {
 //  [self.gameModel generateQuestion ];
   self.questionToActivePlayer.text = [self.gameModel generateQuestion];
 //  self.questionToActivePlayer.text = self.question.question;
+  int player1Lives = [self.gameModel getPlayer1Lives];
+  int player2Lives = [self.gameModel getPlayer2Lives];
   
+  if (player1Lives == 0) {
+    //    [self viewDidLoad];
+    self.questionToActivePlayer.text = @"Player 1 lost. Game Over";
+    //    pause();
+    
+  }
+  
+  if (player2Lives == 0) {
+    //    [self viewDidLoad];
+    self.questionToActivePlayer.text = @"Player 2 lost. Game Over";
+    //    pause();
+  }
+
 }
 
 @end

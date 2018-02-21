@@ -40,6 +40,30 @@
 //  self.question = [NSString stringWithFormat:@"%li + %li", (long)self.leftValue, (long)self.rightValue];
 }
 
+- (int) getPlayer1Score {
+  NSLog(@"gamemodel player 1 score %d", self.player1.score);
+
+  return self.player1.score;
+  
+}
+- (int) getPlayer1Lives {
+  NSLog(@"gamemodel player 1 lives %d", self.player1.numberOfLives);
+
+  return self.player1.numberOfLives;
+
+}
+- (int) getPlayer2Score {
+  NSLog(@"gamemodel player 2 score %d", self.player2.score);
+
+  return self.player2.score;
+}
+- (int) getPlayer2Lives {
+  NSLog(@"gamemodel player 2 lives %d", self.player2.numberOfLives);
+
+  return self.player2.numberOfLives;
+
+}
+
 //-(void) createPlayers : (int)numPlayers {
 //  if (numPlayers > 1) {
 //
@@ -92,13 +116,19 @@
       [self.player1 increaseScore];
     } else {
       [self.player2 increaseScore];
+//      NSLog(@"player 2 score %d", self.player2.score);
+
     }
     //    self.playerOneScore.text = [NSString stringWithFormat:@"%d", self.player1.score];
   } else {
     if (self.currentPlayer == 1) {
       [self.player1 loseLife];
+//      NSLog(@"player 1 score %d", self.player1.numberOfLives);
+
     } else {
       [self.player2 loseLife];
+//      NSLog(@"player 2 score %d", self.player1.numberOfLives);
+
     }
     //    self.player1.numberOfLives--;
     //    self.playerOneLives.text = [NSString stringWithFormat:@"%d", self.player1.numberOfLives];

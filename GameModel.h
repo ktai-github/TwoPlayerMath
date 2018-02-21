@@ -35,5 +35,8 @@
 - (void) processAnswer: (int)playerAnswer;
 //- (NSString *) getQuestion;
 - (NSString *)generateQuestion;
-
+- (int) getPlayer1Score;
+- (int) getPlayer1Lives;
+- (int) getPlayer2Score;
+- (int) getPlayer2Lives;
 @end

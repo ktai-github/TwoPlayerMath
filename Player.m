@@ -22,10 +22,13 @@
 
 - (void) loseLife {
   self.numberOfLives--;
+  NSLog(@"player lives %d", self.numberOfLives);
 }
 
 - (void) increaseScore {
   self.score++;
+  NSLog(@"player score %d", self.score);
+
 }
 
 @end
