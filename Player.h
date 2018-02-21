@@ -13,6 +13,8 @@
 @property (nonatomic, assign) int score;
 @property (nonatomic, assign) int numberOfLives;
 
+
 - (void) loseLife;
+- (void) increaseScore;
 
 @end

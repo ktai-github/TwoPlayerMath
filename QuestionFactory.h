@@ -10,6 +10,6 @@
 
 @interface QuestionFactory : Question
 
-- (Question *) generateRandomQuestion;
+//- (Question *) generateRandomQuestion;
 
 @end

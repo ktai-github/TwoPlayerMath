@@ -10,9 +10,9 @@
 
 @implementation QuestionFactory
 
-- (Question *) generateRandomQuestion {
-  return 0;
-}
+//- (Question *) generateRandomQuestion {
+//  return 0;
+//}
 
 - (instancetype)init
 {

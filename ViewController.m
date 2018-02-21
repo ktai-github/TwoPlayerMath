@@ -32,6 +32,7 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  
   // Do any additional setup after loading the view, typically from a nib.
   self.answerEntry.text = @"";
   
@@ -40,8 +41,11 @@
   self.player1 = [[Player alloc] init];
   self.player2 = [[Player alloc] init];
 
-  self.qFac = [[QuestionFactory alloc] init];
-  self.questionToActivePlayer.text = [self.qFac question];
+//  self.question = [[Question alloc] init];
+//  self.qFac = [[QuestionFactory alloc] init];
+//  self.questionToActivePlayer.text = [self.qFac question];
+  self.questionToActivePlayer.text = [self.gameModel generateQuestion];
+  
   self.activePlayer.text = @"Player 1";
 //  QuestionManager *qManager = [[QuestionManager alloc] init];
 
@@ -131,25 +135,29 @@ static void enterNumber(ViewController *object, NSString *numberString) {
 
 - (IBAction)enter:(id)sender {
   
-  int playerAnswer = [self.answerEntry.text intValue];
-  NSInteger rightAnswer = [self.qFac answer];
-  if (playerAnswer == rightAnswer) {
-//    self.playerOneScore.text = [NSString stringWithFormat:@"%d", self.player1.score];
-  } else {
-//    self.player1.numberOfLives--;
-//    self.playerOneLives.text = [NSString stringWithFormat:@"%d", self.player1.numberOfLives];
-  }
   
-  self.qFac = [[QuestionFactory alloc] init];
-  self.questionToActivePlayer.text = [self.qFac question];
+  int playerAnswer = [self.answerEntry.text intValue];
+  [self.gameModel processAnswer:playerAnswer];
+  
+  self.playerOneLives.text = [NSString stringWithFormat:@"%d", self.player1.numberOfLives];
+  self.playerOneScore.text = [NSString stringWithFormat:@"%d", self.player1.score];
+  
+  self.playerTwoLives.text = [NSString stringWithFormat:@"%d", self.player2.numberOfLives];
+  self.playerTwoScore.text = [NSString stringWithFormat:@"%d", self.player2.score];
+
+//  self.qFac = [[QuestionFactory alloc] init];
+//  self.questionToActivePlayer.text = [self.qFac question];
+//  self.questionToActivePlayer.text = [self.gameModel question];
   self.answerEntry.text = @"";
-//  NSLog (@"%d", self.gameModel.changePlayer);
   NSString *currentPlayer = [self.gameModel changePlayer];
 //  [activePlayerString stringByAppendingString:[NSString stringWithFormat:@"%d", [self.gameModel changePlayer]]];
 //  NSString *currentPlayerString = [NSString stringWithFormat:@"%d",currentPlayer];
 //  NSString *activePlayerString = @"Player ";
 //  [activePlayerString stringByAppendingString:currentPlayerString];
   self.activePlayer.text = currentPlayer;
+//  [self.gameModel generateQuestion ];
+  self.questionToActivePlayer.text = [self.gameModel generateQuestion];
+//  self.questionToActivePlayer.text = self.question.question;
   
 }
 

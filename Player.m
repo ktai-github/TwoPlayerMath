@@ -24,4 +24,8 @@
   self.numberOfLives--;
 }
 
+- (void) increaseScore {
+  self.score++;
+}
+
 @end
